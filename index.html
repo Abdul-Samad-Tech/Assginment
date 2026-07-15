@@ -356,19 +356,31 @@
   
   .image-content{
     text-align:center;
+    position:relative;
   }
   
   .image-content img{
     max-width:100%;
     max-height:70vh;
     border-radius:1.5rem;
-    opacity:0.7;
+    opacity:0.4;
     box-shadow: 0 0 40px rgba(255,159,199,0.3);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
   .image-content img:hover{
-    opacity:0.9;
+    opacity:0.6;
     transform: scale(1.02);
+  }
+  
+  .image-overlay{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    z-index:10;
+    width:100%;
+    padding:0 2rem;
   }
   
   .close-image-btn{
@@ -1017,8 +1029,6 @@
           <p class="leading-relaxed text-white/90 text-[15px] md:text-base mb-6">
             Yes, sometimes tension did arise between us, especially when we talked about someone else's issue and my anger would flare up — but you always handled me gently. All of this, the good memories and the difficult ones, are the story of our real and genuine love — where there was laughter, there was warmth, there was a bit of tension too, but more than anything, there was pure love for each other.
           </p>
-          <p class="handwritten text-4xl text-white mb-4" style="filter: drop-shadow(0 0 25px rgba(255,159,199,0.7));">I love you, Huri 💗</p>
-          <p class="handwritten text-3xl text-white/90">— forever yours 💍</p>
           <button id="confettiBtn" class="mt-4 px-6 py-2 bg-gradient-to-r from-[var(--blush-deep)] to-[var(--plum)] text-white rounded-full hover:scale-105 transition-transform text-sm" style="box-shadow: 0 0 30px rgba(255,159,199,0.4);">🎉 Click for surprise!</button>
         </div>
       </section>
@@ -1043,7 +1053,7 @@
   <div class="celebration-content">
     <h1 class="celebration-title">💕 You're Amazing! 💕</h1>
     <p class="celebration-text">Huri, you make every moment special. Thank you for being you!</p>
-    <button class="celebration-btn" id="closeCelebration">Back to Love 💗</button>
+    <button class="celebration-btn" id="closeCelebration">Back to Moti 💗</button>
   </div>
 </div>
 
@@ -1052,7 +1062,11 @@
   <div class="image-container">
     <div class="image-content">
       <img src="WhatsApp Image 2026-07-15 at 9.45.25 PM.jpeg" alt="Special Memory" />
-      <button class="close-image-btn" id="closeImage">Close 💗</button>
+      <div class="image-overlay">
+        <h1 class="celebration-title">💕 You're Amazing! 💕</h1>
+        <p class="celebration-text">Huri, you make every moment special. Thank you for being you!</p>
+        <button class="close-image-btn" id="closeImage">Back to Love 💗</button>
+      </div>
     </div>
   </div>
 </div>
