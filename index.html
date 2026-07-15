@@ -247,81 +247,200 @@
   }
 
 
-  /* ---------- PIN Page ---------- */
+  /* ---------- Cinematic PIN Page ---------- */
   #pin-screen{
     position:fixed; inset:0; z-index:200;
     display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(circle at 50% 30%, var(--lavender), var(--blush) 70%);
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
+    overflow:hidden;
   }
   #pin-screen.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  
+  /* Cinematic vignette effect */
+  #pin-screen::before{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+    pointer-events:none;
+  }
+  
+  /* Cinematic light rays */
+  #pin-screen::after{
+    content:'';
+    position:absolute; top:-50%; left:50%; transform:translateX(-50%);
+    width:200%; height:100%;
+    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.03) 30deg, transparent 60deg, rgba(233,216,251,0.03) 120deg, transparent 150deg, rgba(244,201,139,0.03) 210deg, transparent 240deg);
+    animation: lightRayRotate 20s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes lightRayRotate{
+    from{ transform:translateX(-50%) rotate(0deg); }
+    to{ transform:translateX(-50%) rotate(360deg); }
+  }
+  
   .pin-container{
-    background: white/95; backdrop-blur-lgP
-    padding:2rem; border-radius:1.5rem;
-    box-shadow: 0 12px 40px rgba(217,74,134,0.3);
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(20px);
+    padding:3rem 2.5rem; border-radius:2rem;
+    border: 1px solid rgba(255,159,199,0.3);
+    box-shadow: 
+      0 0 60px rgba(255,159,199,0.2),
+      0 0 120px rgba(255,159,199,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.2);
     text-align:center;
-    max-width:320px;
-    animation: pinBounce 0.8s ease-out;
+    max-width:380px;
+    animation: cinematicEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position:relative;
+    z-index:10;
   }
-  @keyframes pinBounce{
-    0%{ transform: scale(0.8) translateY(30px); opacity:0; }
-    60%{ transform: scale(1.05) translateY(-5px); }
-    100%{ transform: scale(1) translateY(0); opacity:1; }
+  @keyframes cinematicEntrance{
+    0%{ transform: scale(0.6) translateY(100px) rotateX(20deg); opacity:0; }
+    60%{ transform: scale(1.02) translateY(-10px) rotateX(-5deg); opacity:1; }
+    100%{ transform: scale(1) translateY(0) rotateX(0deg); opacity:1; }
   }
+  
+  /* Cinematic glow effect on container */
+  .pin-container::before{
+    content:'';
+    position:absolute; inset:-2px;
+    background: linear-gradient(45deg, var(--blush-deep), var(--lavender), var(--gold), var(--blush-deep));
+    border-radius:2.1rem;
+    z-index:-1;
+    opacity:0.5;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  @keyframes glowPulse{
+    0%,100%{ opacity:0.3; }
+    50%{ opacity:0.6; }
+  }
+  
   .pin-input-container{
-    display:flex; gap:8px; justify-content:center; margin:1.5rem 0;
+    display:flex; gap:12px; justify-content:center; margin:2rem 0;
   }
   .pin-input{
-    width:45px; height:55px; font-size:1.5rem; text-align:center;
-    border:2px solid var(--blush-deep); border-radius:12px;
-    background:white; color:var(--plum); font-weight:600;
-    transition: all 0.3s ease;
+    width:50px; height:65px; font-size:1.8rem; text-align:center;
+    border: 2px solid rgba(255,159,199,0.4);
+    border-radius:15px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-weight:700;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(10px);
+    text-shadow: 0 0 20px rgba(255,159,199,0.5);
   }
   .pin-input:focus{
-    outline:none; border-color: var(--plum);
-    box-shadow: 0 0 0 3px rgba(91,58,90,0.2);
-    transform: scale(1.05);
+    outline:none; 
+    border-color: var(--blush-deep);
+    box-shadow: 
+      0 0 30px rgba(255,159,199,0.4),
+      0 0 60px rgba(255,159,199,0.2),
+      inset 0 0 20px rgba(255,159,199,0.1);
+    transform: scale(1.1);
+    background: rgba(255,159,199,0.15);
   }
   .pin-input.filled{
-    background: var(--blush-deep);
+    background: linear-gradient(135deg, var(--blush-deep), var(--plum));
     color: white;
-    border-color: var(--blush-deep);
+    border-color: transparent;
+    box-shadow: 0 0 30px rgba(255,159,199,0.5);
+    animation: filledGlow 0.5s ease-out;
+  }
+  @keyframes filledGlow{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.15); }
+    100%{ transform: scale(1); }
   }
   .pin-input.error{
     border-color: #ff4757;
-    animation: shake 0.5s ease;
+    background: rgba(255,71,87,0.2);
+    animation: cinematicShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    box-shadow: 0 0 30px rgba(255,71,87,0.5);
   }
-  @keyframes shake{
-    0%,100%{ transform: translateX(0); }
-    25%{ transform: translateX(-8px); }
-    75%{ transform: translateX(8px); }
+  @keyframes cinematicShake{
+    0%,100%{ transform: translateX(0) rotate(0deg); }
+    20%{ transform: translateX(-15px) rotate(-3deg); }
+    40%{ transform: translateX(12px) rotate(2deg); }
+    60%{ transform: translateX(-8px) rotate(-1deg); }
+    80%{ transform: translateX(5px) rotate(0.5deg); }
   }
   .pin-btn{
-    background: var(--blush-deep); color: white;
-    border:none; padding:12px 32px;
-    border-radius:25px; font-size:1rem; font-weight:600;
-    cursor:pointer; transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(217,74,134,0.4);
+    background: linear-gradient(135deg, var(--blush-deep), var(--plum));
+    color: white;
+    border:none; padding:16px 48px;
+    border-radius:30px; font-size:1.1rem; font-weight:700;
+    cursor:pointer; 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+      0 8px 30px rgba(255,159,199,0.4),
+      0 0 60px rgba(255,159,199,0.2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position:relative;
+    overflow:hidden;
   }
-  .pin-btn:hover{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(217,74,134,0.5); }
+  .pin-btn::before{
+    content:'';
+    position:absolute; top:0; left:-100%;
+    width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+  }
+  .pin-btn:hover::before{
+    left:100%;
+  }
+  .pin-btn:hover{ 
+    transform: translateY(-4px) scale(1.05); 
+    box-shadow: 
+      0 12px 40px rgba(255,159,199,0.5),
+      0 0 80px rgba(255,159,199,0.3);
+  }
   .pin-btn:active{ transform: scale(0.95); }
   .pin-hint{
-    font-size:0.85rem; color: var(--plum); opacity:0.7;
-    margin-top:1rem;
+    font-size:0.9rem; color: rgba(255,217,232,0.8);
+    margin-top:1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .pin-hearts{
     position:absolute; width:100%; height:100%;
     pointer-events:none; overflow:hidden;
   }
   .pin-heart{
-    position:absolute; font-size:1.5rem;
-    animation: floatHeart 4s ease-in-out infinite;
+    position:absolute; font-size:2rem;
+    animation: cinematicFloat 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255,159,199,0.5));
   }
-  @keyframes floatHeart{
-    0%,100%{ transform: translateY(0) rotate(0deg); }
-    50%{ transform: translateY(-20px) rotate(10deg); }
+  @keyframes cinematicFloat{
+    0%,100%{ transform: translateY(0) rotate(0deg) scale(1); opacity:0.6; }
+    50%{ transform: translateY(-30px) rotate(15deg) scale(1.2); opacity:1; }
   }
-  /* PIN screen shows on all devices */
+  
+  /* Cinematic particle effects */
+  .cinematic-particle{
+    position:absolute; width:4px; height:4px;
+    background: var(--blush-deep);
+    border-radius:50%;
+    pointer-events:none;
+    animation: particleFloat 8s linear infinite;
+    box-shadow: 0 0 10px var(--blush-deep);
+  }
+  @keyframes particleFloat{
+    0%{ transform: translateY(100vh) translateX(0) scale(0); opacity:0; }
+    10%{ opacity:1; transform: scale(1); }
+    90%{ opacity:0.5; }
+    100%{ transform: translateY(-100vh) translateX(100px) scale(0.5); opacity:0; }
+  }
+  
+  /* Cinematic unlock success effect */
+  .unlock-success{
+    animation: unlockExplosion 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes unlockExplosion{
+    0%{ transform: scale(1); opacity:1; }
+    50%{ transform: scale(1.1); opacity:0.8; }
+    100%{ transform: scale(0); opacity:0; }
+  }
 
   /* ---------- Cover ---------- */
   #cover-screen{
@@ -484,17 +603,18 @@
 </button>
 
 
-<!-- ================= PIN SCREEN (Mobile Only) ================= -->
+<!-- ================= CINEMATIC PIN SCREEN ================= -->
 <div id="pin-screen">
+  <div class="cinematic-particles" id="cinematicParticles"></div>
   <div class="pin-hearts" id="pinHearts"></div>
   <div class="pin-container">
-    <p class="handwritten text-2xl text-[var(--blush-deep)] mb-2">Hey Huri! 💗</p>
-    <p class="text-[var(--plum)] text-sm mb-4">Enter your birthday to unlock</p>
+    <p class="handwritten text-3xl text-white mb-2 drop-shadow-lg">Hey Huri! 💗</p>
+    <p class="text-white/80 text-sm mb-4 tracking-wide">Enter your birthday to unlock</p>
     <div class="pin-input-container" id="pinContainer">
       <input type="text" maxlength="2" class="pin-input" placeholder="DD" />
-      <span class="text-2xl text-[var(--blush-deep)] self-center">/</span>
+      <span class="text-2xl text-white/60 self-center">/</span>
       <input type="text" maxlength="2" class="pin-input" placeholder="MM" />
-      <span class="text-2xl text-[var(--blush-deep)] self-center">/</span>
+      <span class="text-2xl text-white/60 self-center">/</span>
       <input type="text" maxlength="4" class="pin-input" placeholder="YYYY" />
     </div>
     <button class="pin-btn" id="pinSubmit">Unlock ✨</button>
@@ -684,21 +804,36 @@
     }, { once: true });
   });
 
-  /* ---------------- PIN Page Logic (Mobile Only) ---------------- */
+  /* ---------------- Cinematic PIN Page Logic ---------------- */
   const pinScreen = document.getElementById('pin-screen');
   const pinInputs = document.querySelectorAll('.pin-input');
   const pinSubmit = document.getElementById('pinSubmit');
   const correctPin = '30032009'; // 30/03/2009
 
+  // Add cinematic particles
+  const cinematicParticles = document.getElementById('cinematicParticles');
+  function spawnCinematicParticle(){
+    const particle = document.createElement('div');
+    particle.className = 'cinematic-particle';
+    particle.style.left = Math.random()*100 + '%';
+    particle.style.animationDuration = (6 + Math.random()*4) + 's';
+    particle.style.animationDelay = Math.random()*2 + 's';
+    cinematicParticles.appendChild(particle);
+    setTimeout(()=> particle.remove(), 10000);
+  }
+  // Spawn particles periodically
+  setInterval(spawnCinematicParticle, 500);
+  for(let i=0; i<20; i++) setTimeout(spawnCinematicParticle, i*100);
+
   // Add floating hearts to PIN screen
   const pinHearts = document.getElementById('pinHearts');
-  for(let i=0; i<8; i++){
+  for(let i=0; i<12; i++){
     const heart = document.createElement('span');
     heart.className = 'pin-heart';
-    heart.textContent = ['💗','💕','💖'][Math.floor(Math.random()*3)];
+    heart.textContent = ['💗','💕','💖','✨'][Math.floor(Math.random()*4)];
     heart.style.left = Math.random()*100 + '%';
     heart.style.top = Math.random()*100 + '%';
-    heart.style.animationDelay = (Math.random()*2) + 's';
+    heart.style.animationDelay = (Math.random()*3) + 's';
     pinHearts.appendChild(heart);
   }
 
@@ -724,8 +859,41 @@
   function checkPin(){
     const enteredPin = Array.from(pinInputs).map(input => input.value).join('');
     if(enteredPin === correctPin){
-      pinScreen.classList.add('hidden');
-      spawnConfetti();
+      // Cinematic unlock success
+      const pinContainer = document.querySelector('.pin-container');
+      pinContainer.classList.add('unlock-success');
+      
+      // Create burst of particles
+      for(let i=0; i<30; i++){
+        setTimeout(()=>{
+          const burst = document.createElement('div');
+          burst.className = 'cinematic-particle';
+          burst.style.left = '50%';
+          burst.style.top = '50%';
+          burst.style.background = ['#ff9fc7', '#ffd9e8', '#e9d8fb', '#f4c98b'][Math.floor(Math.random()*4)];
+          burst.style.width = (6 + Math.random()*8) + 'px';
+          burst.style.height = burst.style.width;
+          burst.style.boxShadow = `0 0 20px ${burst.style.background}`;
+          burst.style.animation = 'none';
+          burst.style.transition = 'all 1s ease-out';
+          cinematicParticles.appendChild(burst);
+          
+          // Animate burst
+          setTimeout(()=>{
+            const angle = (Math.random()*360) * (Math.PI/180);
+            const distance = 200 + Math.random()*300;
+            burst.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px) scale(0)`;
+            burst.style.opacity = '0';
+          }, 50);
+          
+          setTimeout(()=> burst.remove(), 1000);
+        }, i*20);
+      }
+      
+      setTimeout(()=>{
+        pinScreen.classList.add('hidden');
+        spawnConfetti();
+      }, 800);
     } else {
       pinInputs.forEach(input => {
         input.classList.add('error');
