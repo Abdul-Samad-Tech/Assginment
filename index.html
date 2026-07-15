@@ -879,6 +879,48 @@
     box-shadow: none;
   }
 
+  /* Mobile responsive fixes */
+  @media (max-width: 768px){
+    .page{
+      padding: 1.5rem !important;
+    }
+    .handwritten.text-3xl{
+      font-size: 1.8rem !important;
+    }
+    .handwritten.text-2xl{
+      font-size: 1.4rem !important;
+    }
+    .handwritten.text-4xl{
+      font-size: 2rem !important;
+    }
+    .leading-relaxed{
+      font-size: 0.85rem !important;
+      line-height: 1.6;
+    }
+    .image-container{
+      padding: 1rem !important;
+      max-width: 95% !important;
+    }
+    .image-content img{
+      max-height: 50vh !important;
+    }
+    .celebration-title{
+      font-size: 2.5rem !important;
+    }
+    .celebration-text{
+      font-size: 1rem !important;
+    }
+    .pin-container{
+      padding: 1.5rem !important;
+      max-width: 90% !important;
+    }
+    .pin-input{
+      width: 40px !important;
+      height: 50px !important;
+      font-size: 1.2rem !important;
+    }
+  }
+
 
   @media (prefers-reduced-motion: reduce){
     .floaty, .wax-seal, .page, .bounce, .confetti, .heart-pop, .sticker, .pulse-glow, .shake-hover{ animation:none !important; transition:none !important; }
@@ -915,11 +957,11 @@
     <p class="handwritten text-3xl text-white mb-2 drop-shadow-lg">Hey Huri! 💗</p>
     <p class="text-white/80 text-sm mb-4 tracking-wide">Enter your birthday to unlock</p>
     <div class="pin-input-container" id="pinContainer">
-      <input type="text" maxlength="2" class="pin-input" placeholder="DD" />
+      <input type="number" maxlength="2" class="pin-input" placeholder="DD" inputmode="numeric" />
       <span class="text-2xl text-white/60 self-center">/</span>
-      <input type="text" maxlength="2" class="pin-input" placeholder="MM" />
+      <input type="number" maxlength="2" class="pin-input" placeholder="MM" inputmode="numeric" />
       <span class="text-2xl text-white/60 self-center">/</span>
-      <input type="text" maxlength="4" class="pin-input" placeholder="YYYY" />
+      <input type="number" maxlength="4" class="pin-input" placeholder="YYYY" inputmode="numeric" />
     </div>
     <button class="pin-btn" id="pinSubmit">Unlock ✨</button>
     <p class="pin-hint">Format: DD/MM/YYYY</p>
