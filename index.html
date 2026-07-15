@@ -900,15 +900,41 @@
     .image-container{
       padding: 1rem !important;
       max-width: 95% !important;
+      max-height: 90vh !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+    .image-content{
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 0 !important;
     }
     .image-content img{
-      max-height: 50vh !important;
+      max-height: 40vh !important;
+      width: 100% !important;
+      object-fit: contain !important;
+    }
+    .image-overlay{
+      position: relative !important;
+      transform: none !important;
+      top: auto !important;
+      left: auto !important;
+      margin-top: 1rem !important;
+      padding: 0 1rem !important;
     }
     .celebration-title{
-      font-size: 2.5rem !important;
+      font-size: 1.8rem !important;
+      margin-bottom: 0.5rem !important;
     }
     .celebration-text{
-      font-size: 1rem !important;
+      font-size: 0.9rem !important;
+      margin-bottom: 1rem !important;
+    }
+    .close-image-btn{
+      padding: 10px 24px !important;
+      font-size: 0.9rem !important;
     }
     .pin-container{
       padding: 1.5rem !important;
