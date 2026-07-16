@@ -9,21 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blush: #ffd9e8;
-    --blush-deep: #ff9fc7;
-    --lavender: #e9d8fb;
-    --cream: #fff6f2;
-    --plum: #5b3a5a;
-    --gold: #f4c98b;
+    --blush: #ffe4ec;
+    --blush-deep: #ffb6c1;
+    --lavender: #e6e6fa;
+    --cream: #fffaf0;
+    --plum: #d8bfd8;
+    --gold: #ffd700;
+    --mint: #98fb98;
+    --sky: #87ceeb;
   }
   *{ box-sizing:border-box; }
   html,body{ height:100%; margin:0; }
   body{
     font-family:'Quicksand', sans-serif;
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('WhatsApp Image 2026-07-15 at 9.45.25 PM.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     overflow-x:hidden;
     min-height:100vh;
     position:relative;
@@ -169,7 +168,7 @@
   #celebration-screen{
     position:fixed; inset:0; z-index:300;
     display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     opacity:0; visibility:hidden; pointer-events:none;
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
     overflow:hidden;
@@ -178,79 +177,67 @@
     opacity:1; visibility:visible; pointer-events:auto;
   }
   
-  /* Cinematic vignette for celebration */
+  /* Cute floating hearts for celebration */
   #celebration-screen::before{
     content:'';
     position:absolute; inset:0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
-    pointer-events:none;
-  }
-  
-  /* Cinematic light rays for celebration */
-  #celebration-screen::after{
-    content:'';
-    position:absolute; top:-50%; left:50%; transform:translateX(-50%);
-    width:200%; height:100%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.05) 30deg, transparent 60deg, rgba(233,216,251,0.05) 120deg, transparent 150deg, rgba(244,201,139,0.05) 210deg, transparent 240deg);
-    animation: lightRayRotate 15s linear infinite;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.25) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(230,230,250,0.25) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 50%, rgba(255,215,0,0.1) 0%, transparent 50%);
     pointer-events:none;
   }
   
   .celebration-content{
     text-align:center;
-    color:white;
+    color:var(--plum);
     max-width:550px;
     padding:3rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,240,0.9) 100%);
     backdrop-filter: blur(20px);
     border-radius:2rem;
-    border: 1px solid rgba(255,159,199,0.3);
-    box-shadow: 
-      0 0 60px rgba(255,159,199,0.3),
-      0 0 120px rgba(255,159,199,0.15),
-      inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 2px solid var(--blush-deep);
+    box-shadow: 0 8px 32px rgba(255,182,193,0.4);
     position:relative;
     z-index:10;
   }
-  /* Cinematic glow on celebration content */
+  /* Cute glow on celebration content */
   .celebration-content::before{
     content:'';
     position:absolute; inset:-2px;
     background: linear-gradient(45deg, var(--blush-deep), var(--lavender), var(--gold), var(--blush-deep));
     border-radius:2.1rem;
     z-index:-1;
-    opacity:0.4;
-    animation: glowPulse 2s ease-in-out infinite;
+    opacity:0.5;
+    animation: cuteGlow 3s ease-in-out infinite;
   }
   .celebration-title{
     font-family:'Dancing Script', cursive;
     font-size:4rem;
     margin-bottom:1.5rem;
-    animation: cinematicCelebrationBounce 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: drop-shadow(0 0 30px rgba(255,159,199,0.6));
+    animation: cuteCelebrationBounce 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color:var(--blush-deep);
   }
-  @keyframes cinematicCelebrationBounce{
-    0%{ transform:scale(0) rotate(-180deg); opacity:0; }
-    50%{ transform:scale(1.2) rotate(10deg); }
+  @keyframes cuteCelebrationBounce{
+    0%{ transform:scale(0) rotate(-15deg); opacity:0; }
+    50%{ transform:scale(1.1) rotate(5deg); }
     100%{ transform:scale(1) rotate(0deg); opacity:1; }
   }
   .celebration-text{
     font-size:1.4rem;
     margin-bottom:2.5rem;
-    opacity:0.95;
+    opacity:0.9;
     line-height:1.6;
+    color:var(--plum);
   }
   .celebration-btn{
-    background: linear-gradient(135deg, var(--blush-deep), var(--plum));
+    background: linear-gradient(135deg, var(--blush-deep), var(--lavender));
     color:white;
     border:none; padding:18px 48px;
     border-radius:35px; font-size:1.2rem; font-weight:700;
     cursor:pointer; 
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 
-      0 8px 30px rgba(255,159,199,0.4),
-      0 0 60px rgba(255,159,199,0.2);
-    animation: cinematicBtnPulse 2s ease-in-out infinite;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 24px rgba(255,182,193,0.4);
+    animation: cuteBtnPulse 2s ease-in-out infinite;
     text-transform: uppercase;
     letter-spacing: 2px;
     position:relative;
@@ -260,21 +247,19 @@
     content:'';
     position:absolute; top:0; left:-100%;
     width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
     transition: left 0.6s ease;
   }
   .celebration-btn:hover::before{
     left:100%;
   }
-  @keyframes cinematicBtnPulse{
+  @keyframes cuteBtnPulse{
     0%,100%{ transform:scale(1); }
     50%{ transform:scale(1.05); }
   }
   .celebration-btn:hover{
     transform:scale(1.1);
-    box-shadow: 
-      0 12px 40px rgba(255,159,199,0.5),
-      0 0 80px rgba(255,159,199,0.3);
+    box-shadow: 0 12px 32px rgba(255,182,193,0.5);
   }
   .celebration-hearts{
     position:absolute; width:100%; height:100%;
@@ -282,19 +267,18 @@
   }
   .celebration-heart{
     position:absolute; font-size:2.5rem;
-    animation: cinematicCelebrationFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(255,159,199,0.5));
+    animation: cuteCelebrationFloat 4s ease-in-out infinite;
   }
-  @keyframes cinematicCelebrationFloat{
+  @keyframes cuteCelebrationFloat{
     0%,100%{ transform:translateY(0) rotate(0deg) scale(1); opacity:0.7; }
     50%{ transform:translateY(-40px) rotate(20deg) scale(1.2); opacity:1; }
   }
 
-  /* ---------- Cinematic Image Screen ---------- */
+  /* ---------- Cute Aesthetic Image Screen ---------- */
   #image-screen{
     position:fixed; inset:0; z-index:400;
     display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     opacity:0; visibility:hidden; pointer-events:none;
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
     overflow:hidden;
@@ -303,55 +287,44 @@
     opacity:1; visibility:visible; pointer-events:auto;
   }
   
-  /* Cinematic vignette for image screen */
+  /* Cute floating hearts for image screen */
   #image-screen::before{
     content:'';
     position:absolute; inset:0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
-    pointer-events:none;
-  }
-  
-  /* Cinematic light rays for image screen */
-  #image-screen::after{
-    content:'';
-    position:absolute; top:-50%; left:50%; transform:translateX(-50%);
-    width:200%; height:100%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.03) 30deg, transparent 60deg, rgba(233,216,251,0.03) 120deg, transparent 150deg, rgba(244,201,139,0.03) 210deg, transparent 240deg);
-    animation: lightRayRotate 20s linear infinite;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(230,230,250,0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 50%, rgba(255,215,0,0.08) 0%, transparent 50%);
     pointer-events:none;
   }
   
   .image-container{
     max-width:90%;
     max-height:90%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,240,0.9) 100%);
     backdrop-filter: blur(20px);
     border-radius:2rem;
-    border: 1px solid rgba(255,159,199,0.3);
-    box-shadow: 
-      0 0 60px rgba(255,159,199,0.3),
-      0 0 120px rgba(255,159,199,0.15),
-      inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 2px solid var(--blush-deep);
+    box-shadow: 0 8px 32px rgba(255,182,193,0.4);
     padding:2rem;
     position:relative;
     z-index:10;
-    animation: imageEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: cuteImageEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
-  @keyframes imageEntrance{
-    0%{ transform: scale(0.8) translateY(50px) rotateX(15deg); opacity:0; }
-    60%{ transform: scale(1.02) translateY(-10px) rotateX(-5deg); opacity:1; }
-    100%{ transform: scale(1) translateY(0) rotateX(0deg); opacity:1; }
+  @keyframes cuteImageEntrance{
+    0%{ transform: scale(0.8) translateY(30px); opacity:0; }
+    60%{ transform: scale(1.05) translateY(-10px); opacity:1; }
+    100%{ transform: scale(1) translateY(0); opacity:1; }
   }
   
-  /* Cinematic glow on image container */
+  /* Cute glow on image container */
   .image-container::before{
     content:'';
     position:absolute; inset:-2px;
     background: linear-gradient(45deg, var(--blush-deep), var(--lavender), var(--gold), var(--blush-deep));
     border-radius:2.1rem;
     z-index:-1;
-    opacity:0.4;
-    animation: glowPulse 3s ease-in-out infinite;
+    opacity:0.5;
+    animation: cuteGlow 3s ease-in-out infinite;
   }
   
   .image-content{
@@ -441,53 +414,41 @@
   #pin-screen{
     position:fixed; inset:0; z-index:200;
     display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
     overflow:hidden;
   }
   #pin-screen.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   
-  /* Cinematic vignette effect */
+  /* Cute floating hearts background */
   #pin-screen::before{
     content:'';
     position:absolute; inset:0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.3) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(230,230,250,0.3) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 50%, rgba(255,215,0,0.1) 0%, transparent 50%);
     pointer-events:none;
-  }
-  
-  /* Cinematic light rays */
-  #pin-screen::after{
-    content:'';
-    position:absolute; top:-50%; left:50%; transform:translateX(-50%);
-    width:200%; height:100%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.03) 30deg, transparent 60deg, rgba(233,216,251,0.03) 120deg, transparent 150deg, rgba(244,201,139,0.03) 210deg, transparent 240deg);
-    animation: lightRayRotate 20s linear infinite;
-    pointer-events:none;
-  }
-  @keyframes lightRayRotate{
-    from{ transform:translateX(-50%) rotate(0deg); }
-    to{ transform:translateX(-50%) rotate(360deg); }
   }
   
   .pin-container{
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,250,240,0.9) 100%);
     backdrop-filter: blur(20px);
     padding:3rem 2.5rem; border-radius:2rem;
-    border: 1px solid rgba(255,159,199,0.3);
+    border: 2px solid var(--blush-deep);
     box-shadow: 
-      0 0 60px rgba(255,159,199,0.2),
-      0 0 120px rgba(255,159,199,0.1),
-      inset 0 1px 0 rgba(255,255,255,0.2);
+      0 8px 32px rgba(255,182,193,0.3),
+      0 0 60px rgba(255,182,193,0.2),
+      inset 0 2px 0 rgba(255,255,255,0.8);
     text-align:center;
     max-width:380px;
-    animation: cinematicEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: cuteEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     position:relative;
     z-index:10;
   }
-  @keyframes cinematicEntrance{
-    0%{ transform: scale(0.6) translateY(100px) rotateX(20deg); opacity:0; }
-    60%{ transform: scale(1.02) translateY(-10px) rotateX(-5deg); opacity:1; }
-    100%{ transform: scale(1) translateY(0) rotateX(0deg); opacity:1; }
+  @keyframes cuteEntrance{
+    0%{ transform: scale(0.8) translateY(50px); opacity:0; }
+    60%{ transform: scale(1.05) translateY(-10px); opacity:1; }
+    100%{ transform: scale(1) translateY(0); opacity:1; }
   }
   
   /* Cinematic glow effect on container */
@@ -504,16 +465,20 @@
     0%,100%{ opacity:0.3; }
     50%{ opacity:0.6; }
   }
+  @keyframes cuteGlow{
+    0%,100%{ opacity:0.3; }
+    50%{ opacity:0.6; }
+  }
   
   .pin-input-container{
     display:flex; gap:12px; justify-content:center; margin:2rem 0;
   }
   .pin-input{
     width:50px; height:65px; font-size:1.8rem; text-align:center;
-    border: 2px solid rgba(255,159,199,0.4);
+    border: 2px solid var(--blush-deep);
     border-radius:15px;
-    background: rgba(255,255,255,0.1);
-    color: white;
+    background: rgba(255,255,255,0.8);
+    color: var(--plum);
     font-weight:700;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     backdrop-filter: blur(10px);
@@ -523,17 +488,17 @@
     outline:none; 
     border-color: var(--blush-deep);
     box-shadow: 
-      0 0 30px rgba(255,159,199,0.4),
-      0 0 60px rgba(255,159,199,0.2),
-      inset 0 0 20px rgba(255,159,199,0.1);
+      0 0 30px rgba(255,182,193,0.4),
+      0 0 60px rgba(255,182,193,0.2),
+      inset 0 0 20px rgba(255,182,193,0.1);
     transform: scale(1.1);
-    background: rgba(255,159,199,0.15);
+    background: rgba(255,182,193,0.15);
   }
   .pin-input.filled{
-    background: linear-gradient(135deg, var(--blush-deep), var(--plum));
+    background: linear-gradient(135deg, var(--blush-deep), var(--lavender));
     color: white;
     border-color: transparent;
-    box-shadow: 0 0 30px rgba(255,159,199,0.5);
+    box-shadow: 0 0 30px rgba(255,182,193,0.5);
     animation: filledGlow 0.5s ease-out;
   }
   @keyframes filledGlow{
@@ -544,10 +509,10 @@
   .pin-input.error{
     border-color: #ff4757;
     background: rgba(255,71,87,0.2);
-    animation: cinematicShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    animation: cuteShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
     box-shadow: 0 0 30px rgba(255,71,87,0.5);
   }
-  @keyframes cinematicShake{
+  @keyframes cuteShake{
     0%,100%{ transform: translateX(0) rotate(0deg); }
     20%{ transform: translateX(-15px) rotate(-3deg); }
     40%{ transform: translateX(12px) rotate(2deg); }
@@ -555,15 +520,13 @@
     80%{ transform: translateX(5px) rotate(0.5deg); }
   }
   .pin-btn{
-    background: linear-gradient(135deg, var(--blush-deep), var(--plum));
+    background: linear-gradient(135deg, var(--blush-deep), var(--lavender));
     color: white;
     border:none; padding:16px 48px;
     border-radius:30px; font-size:1.1rem; font-weight:700;
     cursor:pointer; 
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 
-      0 8px 30px rgba(255,159,199,0.4),
-      0 0 60px rgba(255,159,199,0.2);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 24px rgba(255,182,193,0.4);
     text-transform: uppercase;
     letter-spacing: 2px;
     position:relative;
@@ -573,7 +536,7 @@
     content:'';
     position:absolute; top:0; left:-100%;
     width:100%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
     transition: left 0.6s ease;
   }
   .pin-btn:hover::before{
@@ -581,9 +544,7 @@
   }
   .pin-btn:hover{ 
     transform: translateY(-4px) scale(1.05); 
-    box-shadow: 
-      0 12px 40px rgba(255,159,199,0.5),
-      0 0 80px rgba(255,159,199,0.3);
+    box-shadow: 0 12px 32px rgba(255,182,193,0.5);
   }
   .pin-btn:active{ transform: scale(0.95); }
   .pin-hint{
@@ -632,45 +593,37 @@
     100%{ transform: scale(0); opacity:0; }
   }
 
-  /* ---------- Cinematic Cover ---------- */
+  /* ---------- Cute Aesthetic Cover ---------- */
   #cover-screen{
     position:fixed; inset:0; z-index:50;
     display:flex; align-items:center; justify-content:center;
-    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
     overflow:hidden;
   }
   #cover-screen.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   
-  /* Cinematic vignette effect */
+  /* Cute floating hearts background */
   #cover-screen::before{
     content:'';
     position:absolute; inset:0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
-    pointer-events:none;
-  }
-  
-  /* Cinematic light rays */
-  #cover-screen::after{
-    content:'';
-    position:absolute; top:-50%; left:50%; transform:translateX(-50%);
-    width:200%; height:100%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.03) 30deg, transparent 60deg, rgba(233,216,251,0.03) 120deg, transparent 150deg, rgba(244,201,139,0.03) 210deg, transparent 240deg);
-    animation: lightRayRotate 20s linear infinite;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(230,230,250,0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 50%, rgba(255,215,0,0.08) 0%, transparent 50%);
     pointer-events:none;
   }
 
-  /* ---------- Cinematic Envelope ---------- */
+  /* ---------- Cute Aesthetic Envelope ---------- */
   .envelope-container{
     position:relative;
     cursor:pointer;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     padding:30px;
-    animation: envelopeFloat 4s ease-in-out infinite;
+    animation: cuteEnvelopeFloat 3s ease-in-out infinite;
   }
-  @keyframes envelopeFloat{
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-15px); }
+  @keyframes cuteEnvelopeFloat{
+    0%,100%{ transform: translateY(0) rotate(-2deg); }
+    50%{ transform: translateY(-15px) rotate(2deg); }
   }
   .envelope-container:hover{
     transform: scale(1.05) translateY(-20px);
@@ -681,15 +634,11 @@
   .envelope{
     width:320px;
     height:200px;
-    background: linear-gradient(135deg, rgba(255,245,248,0.15) 0%, rgba(255,228,236,0.1) 100%);
-    backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 100%);
     border-radius:16px;
     position:relative;
-    box-shadow: 
-      0 0 60px rgba(255,159,199,0.3),
-      0 0 120px rgba(255,159,199,0.15),
-      inset 0 1px 0 rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,159,199,0.3);
+    box-shadow: 0 8px 24px rgba(255,182,193,0.4);
+    border: 2px solid var(--blush-deep);
     overflow:hidden;
   }
   /* Cinematic glow on envelope */
@@ -785,10 +734,10 @@
   .sticker-ml{ top:50%; left:-30px; transform:translateY(-50%); animation-delay:0.4s; }
   .sticker-mr{ top:50%; right:-32px; transform:translateY(-50%); animation-delay:1s; }
 
-  /* ---------- Cinematic Book ---------- */
+  /* ---------- Cute Aesthetic Book ---------- */
   body{
     font-family:'Quicksand', sans-serif;
-    background: radial-gradient(ellipse at 50% 0%, #1a0a1f 0%, #2d1b3d 40%, #1a0a1f 100%);
+    background: linear-gradient(135deg, #ffe4ec 0%, #fffaf0 50%, #e6e6fa 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -796,23 +745,15 @@
     min-height:100vh;
     position:relative;
   }
-  /* Cinematic vignette for body */
+  /* Cute floating hearts for body */
   body::before{
     content:'';
     position:fixed; inset:0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.6) 100%);
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(230,230,250,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 50%);
     pointer-events:none;
     z-index:1;
-  }
-  /* Cinematic light rays for body */
-  body::after{
-    content:'';
-    position:fixed; top:-50%; left:50%; transform:translateX(-50%);
-    width:200%; height:100%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(255,159,199,0.02) 30deg, transparent 60deg, rgba(233,216,251,0.02) 120deg, transparent 150deg, rgba(244,201,139,0.02) 210deg, transparent 240deg);
-    animation: lightRayRotate 25s linear infinite;
-    pointer-events:none;
-    z-index:0;
   }
   
   #book-wrap{
@@ -824,27 +765,28 @@
     backface-visibility:hidden;
     transform-origin:left center;
     transition: transform 0.85s cubic-bezier(.45,.05,.2,1);
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.08) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,250,240,0.9) 100%);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,159,199,0.3);
+    border: 2px solid var(--blush-deep);
+    box-shadow: 0 8px 24px rgba(255,182,193,0.3);
   }
   .page.flipped{ transform: rotateY(-165deg); }
   .page-shadow{
     position:absolute; inset:0; border-radius:1.5rem;
-    background:linear-gradient(to right, rgba(0,0,0,0.2), transparent 35%);
+    background:linear-gradient(to right, rgba(255,182,193,0.15), transparent 35%);
     opacity:0; transition: opacity 0.85s ease; pointer-events:none;
   }
   .page.flipped .page-shadow{ opacity:1; }
   
-  /* Cinematic glow on pages */
+  /* Cute glow on pages */
   .page::before{
     content:'';
     position:absolute; inset:-2px;
     background: linear-gradient(45deg, var(--blush-deep), var(--lavender), var(--gold), var(--blush-deep));
     border-radius:1.6rem;
     z-index:-1;
-    opacity:0.2;
-    animation: glowPulse 4s ease-in-out infinite;
+    opacity:0.3;
+    animation: cuteGlow 3s ease-in-out infinite;
   }
 
   .dot{ 
@@ -980,13 +922,13 @@
   <div class="cinematic-particles" id="cinematicParticles"></div>
   <div class="pin-hearts" id="pinHearts"></div>
   <div class="pin-container">
-    <p class="handwritten text-3xl text-white mb-2 drop-shadow-lg">Hey Huri! 💗</p>
-    <p class="text-white/80 text-sm mb-4 tracking-wide">Enter your birthday to unlock</p>
+    <p class="handwritten text-3xl text-[var(--plum)] mb-2">Hey Huri! 💗</p>
+    <p class="text-[var(--plum)]/80 text-sm mb-4 tracking-wide">Enter your birthday to unlock</p>
     <div class="pin-input-container" id="pinContainer">
       <input type="number" maxlength="2" class="pin-input" placeholder="DD" inputmode="numeric" />
-      <span class="text-2xl text-white/60 self-center">/</span>
+      <span class="text-2xl text-[var(--plum)]/60 self-center">/</span>
       <input type="number" maxlength="2" class="pin-input" placeholder="MM" inputmode="numeric" />
-      <span class="text-2xl text-white/60 self-center">/</span>
+      <span class="text-2xl text-[var(--plum)]/60 self-center">/</span>
       <input type="number" maxlength="4" class="pin-input" placeholder="YYYY" inputmode="numeric" />
     </div>
     <button class="pin-btn" id="pinSubmit">Unlock ✨</button>
@@ -994,11 +936,11 @@
   </div>
 </div>
 
-<!-- ================= CINEMATIC COVER SCREEN ================= -->
+<!-- ================= CUTE AESTHETIC COVER SCREEN ================= -->
 <div id="cover-screen">
   <div class="text-center px-6" style="position:relative; z-index:10;">
-    <p class="handwritten text-2xl md:text-3xl text-white mb-2 drop-shadow-lg">a little something</p>
-    <h1 class="handwritten text-5xl md:text-7xl text-white mb-8 leading-tight" style="filter: drop-shadow(0 0 30px rgba(255,159,199,0.6));">for Huri</h1>
+    <p class="handwritten text-2xl md:text-3xl text-[var(--plum)] mb-2">a little something</p>
+    <h1 class="handwritten text-5xl md:text-7xl text-[var(--blush-deep)] mb-8 leading-tight">for Huri</h1>
     <div class="envelope-container mx-auto" id="envelopeBtn">
       <div class="envelope-sticker sticker-tl">🌸</div>
       <div class="envelope-sticker sticker-tr">🦋</div>
@@ -1013,7 +955,7 @@
         <div class="envelope-decoration">✨</div>
       </div>
     </div>
-    <p class="mt-6 text-sm md:text-base text-white/80 tracking-wide" style="filter: drop-shadow(0 0 10px rgba(255,159,199,0.4));">tap the envelope to open</p>
+    <p class="mt-6 text-sm md:text-base text-[var(--plum)]/80 tracking-wide">tap the envelope to open</p>
   </div>
 </div>
 
@@ -1024,7 +966,7 @@
 
     <!-- decorative title above book -->
     <div class="text-center mb-5">
-      <p class="handwritten text-xl text-white fade-in" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">for Huri, always ✨</p>
+      <p class="handwritten text-xl text-[var(--plum)] fade-in">for Huri, always ✨</p>
     </div>
 
     <div class="relative w-full" style="min-height: 520px;">
@@ -1033,71 +975,71 @@
       <section class="page absolute inset-0 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between" data-page="0" style="z-index:5;">
         <div class="page-shadow rounded-[1.5rem]"></div>
         <div>
-          <p class="handwritten text-3xl text-white mb-4" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">Love and Affection 💗</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-3xl text-[var(--plum)] mb-4">Love and Affection 💗</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             Huri, the first thing I want to remind you of is our love. Do you remember how we used to say goodnight to each other before sleeping, and the first thing we did every morning was think of each other? Over every little thing, we expressed our love — whether it was a simple "❤️" or a "💌" reaction. There was always this pull between us, this attraction that never faded — the way your voice would change when we talked, the way I'd tease you just to hear you laugh, the way even a small glance or a playful comment felt like magic between us.
           </p>
         </div>
-        <p class="text-xs text-white/40 text-right">page 1 of 5</p>
+        <p class="text-xs text-[var(--plum)]/40 text-right">page 1 of 5</p>
       </section>
 
       <!-- PAGE 2 -->
       <section class="page absolute inset-0 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between" data-page="1" style="z-index:4;">
         <div class="page-shadow rounded-[1.5rem]"></div>
         <div>
-          <p class="handwritten text-3xl text-white mb-4" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">Growing Stronger 💕</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-3xl text-[var(--plum)] mb-4">Growing Stronger 💕</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             In the beginning, there were times when things felt tense, but slowly our love — and that same attraction — only grew deeper. Today it feels like we're incomplete without each other, and this feeling gets stronger for me every single day.
           </p>
-          <p class="handwritten text-2xl text-white mb-3 mt-6" style="filter: drop-shadow(0 0 15px rgba(255,159,199,0.5));">Care and Possessiveness 🤝</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-2xl text-[var(--plum)] mb-3 mt-6">Care and Possessiveness 🤝</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             Then I remember how much we cared for each other. I always reminded you to sleep on time, eat properly, and finish your studies — and you always worried about me too. It wasn't just words, it was our real attachment to one another.
           </p>
         </div>
-        <p class="text-xs text-white/40 text-right">page 2 of 5</p>
+        <p class="text-xs text-[var(--plum)]/40 text-right">page 2 of 5</p>
       </section>
 
       <!-- PAGE 3 -->
       <section class="page absolute inset-0 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between" data-page="2" style="z-index:3;">
         <div class="page-shadow rounded-[1.5rem]"></div>
         <div>
-          <p class="handwritten text-3xl text-white mb-4" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">Only Mine 💝</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
-            And yes, I remember whenever a third person came between us — whether it was Ammar or anyone else — how possessive we'd both get. Saying "you're only mine," getting jealous — all of that was just a reflection of how deep our love was, and remembering it still makes me smile today.
+          <p class="handwritten text-3xl text-[var(--plum)] mb-4">Only Mine 💝</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
+            And yes, I remember whenever a third person came between us — whether it was Ahsan or anyone else — how possessive we'd both get. Saying "you're only mine," getting jealous — all of that was just a reflection of how deep our love was, and remembering it still makes me smile today.
           </p>
-          <p class="handwritten text-2xl text-white mb-3 mt-6" style="filter: drop-shadow(0 0 15px rgba(255,159,199,0.5));">Fun and Teasing 😄</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-2xl text-[var(--plum)] mb-3 mt-6">Fun and Teasing 😄</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             And those moments of fun and teasing, how could I ever forget them? So many times we made jokes about each other, teased one another, threw playful taunts — but always within the bounds of love.
           </p>
         </div>
-        <p class="text-xs text-white/40 text-right">page 3 of 5</p>
+        <p class="text-xs text-[var(--plum)]/40 text-right">page 3 of 5</p>
       </section>
 
       <!-- PAGE 4 -->
       <section class="page absolute inset-0 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between" data-page="3" style="z-index:2;">
         <div class="page-shadow rounded-[1.5rem]"></div>
         <div>
-          <p class="handwritten text-3xl text-white mb-4" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">Our Sweet Moments 🎬</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-3xl text-[var(--plum)] mb-4">Our Sweet Moments 🎬</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             Sending each other reels every day, laughing together over comedy clips, watching couple-goals videos and seeing ourselves in them — that was the sweetest part of our friendship and comfort. In those moments we laughed freely without any hesitation, and that's what brought us even closer.
           </p>
-          <p class="handwritten text-2xl text-white mb-3 mt-6" style="filter: drop-shadow(0 0 15px rgba(255,159,199,0.5));">Daily Life & Ups and Downs 🌈</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base">
+          <p class="handwritten text-2xl text-[var(--plum)] mb-3 mt-6">Daily Life & Ups and Downs 🌈</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base">
             And finally, the real moments of life that we went through together. Your study stress, exam tension, not getting enough sleep, the power going out, things at home, mentions of your mom — I was always there with you through all of it.
           </p>
         </div>
-        <p class="text-xs text-white/40 text-right">page 4 of 5</p>
+        <p class="text-xs text-[var(--plum)]/40 text-right">page 4 of 5</p>
       </section>
 
       <!-- PAGE 5 -->
       <section class="page absolute inset-0 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between items-center text-center" data-page="4" style="z-index:1;">
         <div class="page-shadow rounded-[1.5rem]"></div>
         <div class="flex-1 flex flex-col items-center justify-center">
-          <p class="handwritten text-3xl text-white mb-4" style="filter: drop-shadow(0 0 20px rgba(255,159,199,0.6));">Pure Love 💕</p>
-          <p class="leading-relaxed text-white/90 text-[15px] md:text-base mb-6">
+          <p class="handwritten text-3xl text-[var(--plum)] mb-4">Pure Love 💕</p>
+          <p class="leading-relaxed text-[var(--plum)]/90 text-[15px] md:text-base mb-6">
             Yes, sometimes tension did arise between us, especially when we talked about someone else's issue and my anger would flare up — but you always handled me gently. All of this, the good memories and the difficult ones, are the story of our real and genuine love — where there was laughter, there was warmth, there was a bit of tension too, but more than anything, there was pure love for each other.
           </p>
-          <button id="confettiBtn" class="mt-4 px-6 py-2 bg-gradient-to-r from-[var(--blush-deep)] to-[var(--plum)] text-white rounded-full hover:scale-105 transition-transform text-sm" style="box-shadow: 0 0 30px rgba(255,159,199,0.4);">🎉 Click for surprise!</button>
+          <button id="confettiBtn" class="mt-4 px-6 py-2 bg-gradient-to-r from-[var(--blush-deep)] to-[var(--lavender)] text-white rounded-full hover:scale-105 transition-transform text-sm" style="box-shadow: 0 0 30px rgba(255,182,193,0.4);">🎉 Click for surprise!</button>
         </div>
       </section>
 
@@ -1105,11 +1047,11 @@
 
     <!-- controls -->
     <div class="flex items-center justify-between mt-6 px-1">
-      <button id="prevBtn" class="btn-nav text-white w-12 h-12 rounded-full flex items-center justify-center text-xl">‹</button>
+      <button id="prevBtn" class="btn-nav text-[var(--plum)] w-12 h-12 rounded-full flex items-center justify-center text-xl">‹</button>
 
       <div class="flex gap-2" id="dots"></div>
 
-      <button id="nextBtn" class="btn-nav text-white w-12 h-12 rounded-full flex items-center justify-center text-xl">›</button>
+      <button id="nextBtn" class="btn-nav text-[var(--plum)] w-12 h-12 rounded-full flex items-center justify-center text-xl">›</button>
     </div>
 
   </div>
@@ -1192,7 +1134,7 @@
   const pinScreen = document.getElementById('pin-screen');
   const pinInputs = document.querySelectorAll('.pin-input');
   const pinSubmit = document.getElementById('pinSubmit');
-  const correctPin = '30032009'; // 30/03/2009
+  const correctPin = '30032008'; // 30/03/2008
 
   // Add cinematic particles
   const cinematicParticles = document.getElementById('cinematicParticles');
